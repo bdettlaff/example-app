@@ -14,7 +14,7 @@ phases:
   pre_build:
     commands:
       - "mkdir ~/.kube/"
-      - "cp config-$ENV ~/.kube/config"
+      - "aws eks --region eu-central-1 update-kubeconfig --name kk_trade_lens_cluster_uat"
   build:
     commands:
       - helm template --name batman -f $CODEBUILD_SRC_DIR/my_values.yaml $CODEBUILD_SRC_DIR/guestbook/ > $CODEBUILD_SRC_DIR/output.yaml
