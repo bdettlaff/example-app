@@ -23,4 +23,4 @@ phases:
       - echo output.yaml created
       - kubectl apply -f $CODEBUILD_SRC_DIR/output.yaml
       - echo outpul.yaml has been applied
-      - echo " "
+      - echo "  "
