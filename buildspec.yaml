@@ -14,7 +14,7 @@ phases:
   pre_build:
     commands:
       - mkdir ~/.kube/
-      - aws eks --region eu-central-1 update-kubeconfig --name kk_trade_lens_cluster_uat
+      - aws eks --region eu-central-1 update-kubeconfig --name kk_trade_lens_cluster_uat --role-arn arn:aws:iam::019396424224:role/service-role/codebuild-guestbook-service-role
   build:
     commands:
       - helm template --name batman -f $CODEBUILD_SRC_DIR/my_values.yaml $CODEBUILD_SRC_DIR/guestbook/ > $CODEBUILD_SRC_DIR/output.yaml
