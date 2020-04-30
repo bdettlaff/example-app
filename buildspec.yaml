@@ -17,4 +17,9 @@ phases:
       - "cp config-$ENV ~/.kube/config"
   build:
     commands:
-      - helm template --release-name 'batman' -f my_values.yaml .\guestbook\
+      - helm template --name batman -f $CODEBUILD_SRC_DIR/my_values.yaml $CODEBUILD_SRC_DIR/guestbook/ > $CODEBUILD_SRC_DIR/output.yaml
+  post_build:
+    commands:
+      - echo output.yaml created
+      - kubectl apply -f $CODEBUILD_SRC_DIR/output.yaml
+      - echo outpul.yaml has been applied
