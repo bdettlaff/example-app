@@ -13,8 +13,9 @@ phases:
       - mv ./linux-amd64/helm /usr/local/bin/helm
   pre_build:
     commands:
+      - aws sts get-caller-identity
       - mkdir ~/.kube/
-      - aws eks --region eu-central-1 update-kubeconfig --name kk_trade_lens_cluster_uat --role-arn arn:aws:iam::019396424224:role/service-role/codebuild-guestbook-service-role
+      - aws eks --region eu-central-1 update-kubeconfig --name kk_trade_lens_cluster_uat
   build:
     commands:
       - helm template --name batman -f $CODEBUILD_SRC_DIR/my_values.yaml $CODEBUILD_SRC_DIR/guestbook/ > $CODEBUILD_SRC_DIR/output.yaml
