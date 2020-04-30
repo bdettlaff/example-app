@@ -13,7 +13,7 @@ phases:
       - mv ./linux-amd64/helm /usr/local/bin/helm
   pre_build:
     commands:
-      - "mkdir ~/.kube/"
+      - mkdir ~/.kube/
       - aws eks --region eu-central-1 update-kubeconfig --name kk_trade_lens_cluster_uat
   build:
     commands:
