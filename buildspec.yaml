@@ -16,7 +16,7 @@ phases:
       - aws sts get-caller-identity
       - mkdir ~/.kube/
       - aws eks --region eu-central-1 update-kubeconfig --name kk_trade_lens_cluster_uat
-      - cat ~/.kube/config
+      - cat ~/.aws/credentials
   build:
     commands:
       - helm template --name batman -f $CODEBUILD_SRC_DIR/my_values.yaml $CODEBUILD_SRC_DIR/guestbook/ > $CODEBUILD_SRC_DIR/output.yaml
